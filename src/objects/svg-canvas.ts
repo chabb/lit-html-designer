@@ -36,7 +36,6 @@ export  class SVGCanvas extends LitElement {
     }
 
     public onMouseOver(e) {
-        console.log('ON MOUSE OVER', e.target._internal);
         if (this.mode !== MODES.FREE) {
             return;
         }
@@ -57,7 +56,6 @@ export  class SVGCanvas extends LitElement {
                 startPoint: this.startPoint,
                 mouse,
             });
-            console.log(newObjectProperties);
             this.selectedObject.properties = newObjectProperties;
             this.objects = this.objects.slice();
 
@@ -70,7 +68,6 @@ export  class SVGCanvas extends LitElement {
     }
 
     public stopDrag(e) {
-        console.log('>>>>>> STOP THE CHEEZE', this.mode);
         if (this.mode === MODES.DRAG || this.mode === MODES.ROTATE || this.mode === MODES.SCALE) {
             this.mode = MODES.FREE;
         }
@@ -107,7 +104,6 @@ export  class SVGCanvas extends LitElement {
         console.log('start dragging', mode, event);
         this.mode = mode;
         this.startPoint = this.getStartPointBundle(event, this.selectedObject);
-        console.log(this.startPoint);
     }
     public getStartPointBundle(event: any, object: Vector) {
         let mouse = this.getMouseCoords(event);
@@ -123,7 +119,6 @@ export  class SVGCanvas extends LitElement {
     }
 
     public _render() {
-        console.log('>``>>>>>RENDERING THE CANVAS 222');
 
         // put that in a method that configure all the handlers for rotation/resizing
         let canResize = true;

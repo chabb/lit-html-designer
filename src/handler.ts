@@ -5,7 +5,7 @@ import {JsonToCssStyle} from "./constants";
 const styles = {
     handler: {
         'position': 'absolute',
-        'border': '6px solid #dedede',
+        'border': '1px solid #555555',
         'zIndex': 999999
     },
     anchor: {
@@ -24,8 +24,8 @@ const styles = {
     },
     rotateAnchor: {
         'marginTop': -8,
-        'borderRight': '2px solid #dedede',
-        'borderTop': '2px solid #dedede',
+        'borderRight': '3px solid #dedede',
+        'borderTop': '3px solid #dedede',
         'position': 'absolute',
         'borderTopRightRadius': 3,
         'zIndex': -1
@@ -59,14 +59,12 @@ export class Handler extends LitElement {
     }
 
     public onMouseDown(e) {
-        console.log('>>>MD IN HANDLER', e.target);
         if (e.target.classList.contains('handler')) {
             this.onDrag(e);
         }
     }
 
     public _render() {
-        console.log('>>>>>>>>>>> rendering boundig box');
         let bb = this.boundingBox;
         if (!bb) {
             return;
@@ -77,7 +75,7 @@ export class Handler extends LitElement {
         // -2px as the border is added outside
         let boundingBox = !!bb ? {
                 rotate: bb.rotate ? bb.rotate : 0,
-                left:`${bb.x - 6}px`, top:`${bb.y - 6}px`, width:`${bb.width - 0}px`, height:`${bb.height - 0}px`
+                left:`${bb.x - 1}px`, top:`${bb.y - 1}px`, width:`${bb.width - 0}px`, height:`${bb.height - 0}px`
             } : {};
         //
         let scaleAnchorstyle = {
@@ -94,7 +92,7 @@ export class Handler extends LitElement {
             on-mousedown=${this.onMouseDownScale} />`;
 
         let rotateAnchorStyle = {
-            marginLeft: this.boundingBox.width - 3 + 'px'
+            marginLeft: this.boundingBox.width - 4 + 'px'
         };
 
         let rotateAnchor = html`

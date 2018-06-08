@@ -24,7 +24,6 @@ export  class Circle extends Vector {
 
     public _render() {
         let {width, height, x, y} = this.properties;
-        console.log('>>>>>>CIRCLE#', width, height);
         // we need to use the dollar sign as it's a real attribute
         if (!this.tpl || true) {
             this.tpl = svg`

@@ -26,7 +26,6 @@ export  class Rectangle extends Vector {
 
     public _render() {
         let {width, height, x, y, radius} = this.properties;
-        console.log(this.onMouseOver);
         // we need to use the dollar sign as it's a real attribute
         this.tpl = svg`
             <rect ...=${this.getObjectAttributes()}
