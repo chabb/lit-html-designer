@@ -1,4 +1,4 @@
-import Vector from './Vector';
+import {Vector} from './Vector';
 import { svg } from 'lit-html/lib/lit-extended';
 
 export  class Circle extends Vector {
@@ -24,9 +24,9 @@ export  class Circle extends Vector {
 
     public _render() {
         let {width, height, x, y} = this.properties;
-        console.log('CALLBACK', this.onMouseOver);
+        console.log('>>>>>>CIRCLE#', width, height);
         // we need to use the dollar sign as it's a real attribute
-        if (!this.tpl) {
+        if (!this.tpl || true) {
             this.tpl = svg`
                 <ellipse ...=${this.getObjectAttributes()}
                     on-mouseover=${this.onMouseOver}

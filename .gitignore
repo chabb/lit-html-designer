@@ -6,6 +6,7 @@ node_modules/
 
 # ignore dist
 /dist
+/lib
 
 # ignore Editor files
 *.sublime-project

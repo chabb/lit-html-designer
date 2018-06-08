@@ -1,4 +1,7 @@
 import decamelize from 'decamelize';
+import scale from './actions/scale';
+import rotate from './actions/rotate';
+import drag from './actions/drag';
 
 const FREE = 0;
 const DRAG = 1;
@@ -30,3 +33,13 @@ export function JsonToAttributes(json: any) {
     }, '');
     return r;
 }
+
+
+
+let map = {
+    [MODES.SCALE]: scale,
+    [MODES.ROTATE]: rotate,
+    [MODES.DRAG]: drag
+};
+
+export { map };

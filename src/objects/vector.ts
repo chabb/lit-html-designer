@@ -17,7 +17,7 @@ export interface Properties {
   radius: number;
 }
 
-export default class Vector {
+export class Vector {
 
     static meta: any;
 
@@ -65,8 +65,9 @@ export default class Vector {
         return '';
     }
 
-    getObjectAttributes() {
+    getObjectAttributes(): any {
         let attr = {
+            internal: this, // can potentially leak
             transform$: this.getTransformMatrix(this.properties),
             style$: JsonToCssStyle(this.getStyle()),
             fill$: this.properties.fill,
@@ -91,3 +92,15 @@ let object = {
       y: mouse.y
     };
  */
+
+
+// app state ( current vs selected ? )
+/*
+{
+    currentObjectIndex: objects.length,
+        selectedObjectIndex: objects.length,
+    startPoint: this.getStartPointBundle(event, object),
+    mode: meta.editor ? modes.EDIT_OBJECT : modes.SCALE,
+    selectedTool: null
+
+    */

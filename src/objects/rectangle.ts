@@ -1,4 +1,4 @@
-import Vector from './Vector';
+import {Vector} from './Vector';
 import { svg } from 'lit-html/lib/lit-extended';
 
 export  class Rectangle extends Vector {
@@ -28,17 +28,15 @@ export  class Rectangle extends Vector {
         let {width, height, x, y, radius} = this.properties;
         console.log(this.onMouseOver);
         // we need to use the dollar sign as it's a real attribute
-        if (!this.tpl) {
-            this.tpl = svg`
-                <rect ...=${this.getObjectAttributes()}
-                     on-mouseover=${this.onMouseOver}
-                     x$=${x}
-                     y$=${y}
-                     rx$=${radius}
-                     width$=${width}
-                     height$=${height}
-                />`;
-        }
+        this.tpl = svg`
+            <rect ...=${this.getObjectAttributes()}
+                 on-mouseover=${this.onMouseOver}
+                 x$=${x}
+                 y$=${y}
+                 rx$=${radius}
+                 width$=${width}
+                 height$=${height}
+            />`;
         return this.tpl;
     }
 }

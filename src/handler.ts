@@ -35,9 +35,13 @@ const styles = {
 
 
 
+
 export class Handler extends LitElement {
 
-    private boundingBox;
+    private boundingBox: any;
+    public onMouseDownRotate: Function;
+    public onMouseDownScale: Function;
+
 
     static get properties() {
         // calling super does not work
@@ -50,6 +54,17 @@ export class Handler extends LitElement {
         super();
     };
 
+    _createRoot() {
+        return this;
+    }
+
+    public onMouseDown(e) {
+        console.log('>>>MD IN HANDLER', e.target);
+        if (e.target.classList.contains('handler')) {
+            this.onDrag(e);
+        }
+    }
+
     public _render() {
         console.log('>>>>>>>>>>> rendering boundig box');
         let bb = this.boundingBox;
@@ -61,6 +76,7 @@ export class Handler extends LitElement {
 
         // -2px as the border is added outside
         let boundingBox = !!bb ? {
+                rotate: bb.rotate ? bb.rotate : 0,
                 left:`${bb.x - 6}px`, top:`${bb.y - 6}px`, width:`${bb.width - 0}px`, height:`${bb.height - 0}px`
             } : {};
         //
@@ -75,7 +91,7 @@ export class Handler extends LitElement {
                 ...styles.scaleAnchor, 
                 ...scaleAnchorstyle })} 
             class='resize-anchor'
-            on-mousedown=${this.onMouseDown} />`;
+            on-mousedown=${this.onMouseDownScale} />`;
 
         let rotateAnchorStyle = {
             marginLeft: this.boundingBox.width - 3 + 'px'
@@ -88,7 +104,7 @@ export class Handler extends LitElement {
                 ...styles.rotateAnchor, 
                 ...rotateAnchorStyle })}
                 class='rotate-anchor'
-                on-mousedown=${this.onMouseDown} />`;
+                on-mousedown=${this.onMouseDownRotate} />`;
 
         let handlerStyle = {
             ...styles.handler,
@@ -97,6 +113,7 @@ export class Handler extends LitElement {
         };
 
         return html`<div class='handler'
+            on-mousedown=${(e) => this.onMouseDown(e)}
             style$=${JsonToCssStyle(handlerStyle)}>
             ${rotateAnchor}
             ${scaleAnchor}
