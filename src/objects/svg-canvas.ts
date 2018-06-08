@@ -43,6 +43,7 @@ export  class SVGCanvas extends LitElement {
 
         this.selectedObject = e.target.internal;
         this.handlerBoundingBox = e.target.getBoundingBox();
+        this.handlerBoundingBox.rotate = this.selectedObject.properties.rotate;
     }
 
     // WE CAN MAKE A DESIGNER COMPONENT THAT USE THOSE METHOD

@@ -86,7 +86,7 @@ export class Handler extends LitElement {
         };
 
         let scaleAnchor = html`
-            <div style=${JsonToCssStyle(
+            <div draggable='false' style=${JsonToCssStyle(
             {...styles.anchor,  
                 ...styles.scaleAnchor, 
                 ...scaleAnchorstyle })} 
@@ -98,7 +98,7 @@ export class Handler extends LitElement {
         };
 
         let rotateAnchor = html`
-            <div style=${JsonToCssStyle(
+            <div draggable='false' style=${JsonToCssStyle(
             {
                 ...styles.anchor, 
                 ...styles.rotateAnchor, 
