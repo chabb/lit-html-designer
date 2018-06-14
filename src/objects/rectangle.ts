@@ -41,4 +41,11 @@ export  class Rectangle extends Vector {
 }
 
 
+
+
 // we need to use lit-extended EVERYWHERE
+
+
+// lit-element portal ? we can use _createRoot to tell where we want to mount the component
+// note that it will NOT create a shadow tree, can we make the assumption that when
+// we call _createRoot, parent DOM is accessible

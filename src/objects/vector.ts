@@ -48,6 +48,11 @@ export class Vector {
         return { x, y, width, height};
     }
 
+    public getPanels() {
+        return {
+            sizePanel: true
+        }
+    }
 
     getStyle() {
         let object = this.properties;
@@ -73,6 +78,7 @@ export class Vector {
             fill$: this.properties.fill,
             stroke$: this.properties.stroke,
             strokeWidth$: this.properties.strokeWidth,
+            getPanels: () => this.getPanels(),
             getBoundingBox: () => this.getBoundingBox()
         };
         return attr;

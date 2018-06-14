@@ -9,10 +9,10 @@ import { html } from 'lit-html/lib/lit-extended.js';
 import { LitElement } from '@polymer/lit-element/lit-element.js';
 import {map, MODES} from "../constants";
 
-
 export  class SVGCanvas extends LitElement {
 
     public objects: any[];
+    public selectedObject: any;
 
     static get properties() {
         // calling super does not work
@@ -28,6 +28,10 @@ export  class SVGCanvas extends LitElement {
         this.truc = 44;
         this.objects = [];
         this.objects.push(new Circle((e) => this.onMouseOver(e)));
+        //TODO(chab) make an handler for the selected object
+        this.selectedObject = this.objects[0];
+        //
+
         setTimeout( ()=> {
             this.objects = this.objects.concat(new Rectangle((e) => this.onMouseOver(e)));
             this.truc++;
@@ -41,6 +45,7 @@ export  class SVGCanvas extends LitElement {
         }
 
         this.selectedObject = e.target.internal;
+        this.panels = e.target.getPanels();
         this.handlerBoundingBox = e.target.getBoundingBox();
         this.handlerBoundingBox.rotate = this.selectedObject.properties.rotate;
     }
@@ -118,6 +123,12 @@ export  class SVGCanvas extends LitElement {
         };
     }
 
+    public onChange(v, k) {
+        this.selectedObject.properties[k] = v;
+        // trigger render
+        this.objects = this.objects.slice();
+    }
+
     public _render() {
 
         // put that in a method that configure all the handlers for rotation/resizing
@@ -131,6 +142,8 @@ export  class SVGCanvas extends LitElement {
             onDrag=${(e) => this.startDrag(MODES.DRAG, e)}
             boundingBox=${this.handlerBoundingBox}></svg-handler>
         `;
+        console.log(this.objects);
+
         // we iterate thru objects and push them as needed
         return html`
                 <div on-mouseup=${(e) => this.stopDrag(e)} 
@@ -141,6 +154,9 @@ export  class SVGCanvas extends LitElement {
                 (object) => object.id, 
                 (i) => i._render())}</svg>
                  ${handlerTemplate}
+                 <svg-panels onChange=${(k,v) => this.onChange(k, v)} 
+                panels=${this.panels}
+                shape=${this.selectedObject.properties}></svg-panels>
                  </div>`;
     }
 }
