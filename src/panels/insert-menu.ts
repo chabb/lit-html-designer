@@ -10,23 +10,29 @@ export class InsertMenu extends LitElement {
             currentTool: String
         }
     }
+
+    public onSelect(e) {
+        console.log(e);
+    }
+
     _render() {
+        console.log('found keys', Object.keys(this.tools);
         let keys = Object.keys(this.tools);
-        console.log('found keys', keys);
+
         return html`
             <div style=${styles.insertMenu}>
-                <div style={styles.mainIcon}>
-                    {this.currentTool ? tools[currentTool].meta.icon
-                    : <Icon icon={"add"} size={30} />}
+                <div style=${styles.mainIcon}>
+                    {this.currentTool ? tools[currentTool].getIcon()
+                    : <svg-icon icon=${"add"} size=${30} />}
             </div>
             <!-- use repeat directive -->
             <ul style=${styles.toolBox}>
-                ${repeat(this.keys, (type, idx) => idx, (type, index) => html`
+                ${repeat(keys, (type, idx) => idx, (type, index) => html`
                     <li style=${[
-                            this.styles.toolBoxItem,
+                            styles.toolBoxItem,
                             this.currentTool === type && styles.currentToolboxItem]}
-                            onMouseDown=${this.props.onSelect.bind(this, type)}>
-                        {this.tools[type].meta.icon}
+                            onMouseDown=${this.onSelect.bind(this, type)}>
+                        ${this.tools[type].getIcon()} </li>
                 `)}
             </ul>
         </div>

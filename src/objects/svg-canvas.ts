@@ -156,7 +156,7 @@ export  class SVGCanvas extends LitElement {
         // we iterate thru objects and push them as needed
         return html`
                 <div on-mouseup=${(e) => this.stopDrag(e)} 
-                on-mousemove=${(e) => this.onDrag(e)}>
+                     on-mousemove=${(e) => this.onDrag(e)}>
                 <svg>
                  ${repeat(
                  this.objects, 

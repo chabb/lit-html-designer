@@ -1,5 +1,5 @@
 import {Vector} from './Vector';
-import { svg } from 'lit-html/lib/lit-extended';
+import {html, svg} from 'lit-html/lib/lit-extended';
 
 export  class Rectangle extends Vector {
 
@@ -17,6 +17,11 @@ export  class Rectangle extends Vector {
             blendMode: 'normal'
         }
     };
+
+    //TODO(chab) found typing, put that upper in vector
+    public static getIcon() {
+        return  html`<svg-icon icon=${'rectangle'} size=${30} />`;
+    }
 
     constructor(protected onMouseOver: Function) {
         super(onMouseOver);

@@ -1,6 +1,6 @@
 import {LitElement} from "@polymer/lit-element";
-import { html, svg } from 'lit-html/lib/lit-extended.js';
-import { LitElement } from '@polymer/lit-element/lit-element.js';
+// i do not want lit-extended here
+import { html, svg } from 'lit-html';
 import {JsonToCssStyle} from "./constants";
 
 
@@ -10,7 +10,7 @@ export class Icon extends LitElement {
     };
 
     renderGraphic() {
-        switch (this.props.icon) {
+        switch (this.icon) {
             case 'my-icon':
                 return (
                     svg`<g><path d="M7.41 7.84l4.59 4.58 4.59-4.58 1.41 1.41-6 6-6-6z"/></g>`
@@ -63,10 +63,10 @@ export class Icon extends LitElement {
                 11h2.1l.9-2.2zm2.5-6.82l1.87 5.02h-3.74l1.87-5.02z"></path></g>`;
             case 'rectangle':
                 return (
-                   svg`<rect width={14} height={14} x={4} y={5} rx={3} ry={3} />`
+                   svg`<rect width=${14} height='14' x=${4} y=${5} rx=${3} ry=${3} />`
             );
             case 'circle':
-                return svg`<circle r={8} cx={11} cy={12} />`;
+                return svg`<circle r='8' cx='11' cy='12' />`;
             case 'polygon':
                 return svg`
                     <g transform={"scale(0.034) translate(100 25)"}>
@@ -94,12 +94,14 @@ export class Icon extends LitElement {
                     </g>`;
             default:
                 console.error('Incorrect parameter');
+                return '';
         }
 
     }
-    render() {
+    _render() {
+        console.log('icon >>>>>>');
         let styles = {
-            fill: this.props.active? "black": "#b5b5b5",
+            fill: this.active? "black": "#b5b5b5",
             verticalAlign: "middle",
             width: this.size,
             height: this.size

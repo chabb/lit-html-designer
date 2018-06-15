@@ -1,5 +1,6 @@
 import {Vector} from './Vector';
-import { svg } from 'lit-html/lib/lit-extended';
+import { svg, html } from 'lit-html/lib/lit-extended';
+import {Icon} from "../icon";
 
 export  class Circle extends Vector {
 
@@ -20,6 +21,11 @@ export  class Circle extends Vector {
     
     constructor(protected onMouseOver: Function) {
         super(onMouseOver);
+    }
+
+    //TODO(chab) found typing
+    public static getIcon() {
+        return  html`<svg-icon icon=${'circle'} size=${30} />`;
     }
 
     public _render() {
