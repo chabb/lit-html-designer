@@ -12,6 +12,7 @@ export class InsertMenu extends LitElement {
     }
     _render() {
         let keys = Object.keys(this.tools);
+        console.log('found keys', keys);
         return html`
             <div style=${styles.insertMenu}>
                 <div style={styles.mainIcon}>

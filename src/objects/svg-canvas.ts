@@ -166,6 +166,7 @@ export  class SVGCanvas extends LitElement {
                  <svg-panels onChange=${(k,v) => this.onChange(k, v)} 
                 panels=${this.panels}
                 shape=${this.selectedObject.properties}></svg-panels>
+                 <svg-insert-menu tools=${objectTypes} selectedTool=${this.selectedTool}></svg-insert-menu>
                  </div>`;
     }
 }
