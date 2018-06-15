@@ -9,6 +9,15 @@ import { html } from 'lit-html/lib/lit-extended.js';
 import { LitElement } from '@polymer/lit-element/lit-element.js';
 import {map, MODES} from "../constants";
 
+
+let objectTypes = {
+    // text
+    // path
+    'circle' : Circle,
+    'rectangle' : Rectangle,
+};
+
+
 export  class SVGCanvas extends LitElement {
 
     public objects: any[];
